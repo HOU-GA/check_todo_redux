@@ -1,0 +1,148 @@
+/* Style pour tâche UNDONE */
+.task-accordion:not(.done) {
+    border-left: 4px solid #d63031;
+  }
+  
+  /* Icône pour tâche UNDONE */
+  .task-title:not(.completed)::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d63031;
+    font-size: 0.8em;
+    margin-right: 8px;
+  }
+  
+  /* Fond pour tâche UNDONE */
+  .task-accordion:not(.done) .task-body {
+    background: linear-gradient(to right, #fff5f5, #ffebee);
+  }
+  
+  /* Effet de bande diagonale rouge pour UNDONE */
+  .task-accordion:not(.done) {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .task-accordion:not(.done)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(214, 48, 49, 0.1) 0%,
+      rgba(214, 48, 49, 0) 50%
+    );
+    pointer-events: none;
+  }
+  
+  /* Style DONE existant amélioré */
+  .task-accordion.done {
+    border-left: 4px solid #2ecc71;
+    background-color: #f0fff4;
+  }
+  
+  .completed::before {
+    content: "✓";
+    color: #2ecc71;
+    /* ... (conserver le reste du style existant) */
+  }
+
+
+  
+
+
+/* Conteneur des boutons d'action */
+.task-actions {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Style de base des boutons */
+  .action-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+  }
+  
+  /* Bouton DONE/UNDONE */
+  .action-btn[variant="success"] {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .action-btn[variant="success"]:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+  }
+  
+  /* Bouton EDIT */
+  .action-btn[variant="info"] {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .action-btn[variant="info"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+  }
+  
+  /* Bouton DELETE */
+  .action-btn[variant="danger"] {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .action-btn[variant="danger"]:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+  }
+  
+  /* Boutons en mode DONE (légèrement plus transparents) */
+  .task-accordion.done .action-btn {
+    opacity: 0.9;
+  }
+  
+  .task-accordion.done .action-btn:hover {
+    opacity: 1;
+  }
+  
+  
+  /* Icônes dans les boutons (optionnel) */
+  .action-btn::before {
+    margin-right: 6px;
+    font-size: 0.9em;
+  }
+  
+  
+  /* Responsive pour petits écrans */
+  @media (max-width: 576px) {
+    .task-actions {
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .action-btn {
+      width: 100%;
+      padding: 10px;
+    }
+  }

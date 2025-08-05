@@ -5,11 +5,14 @@ import ListTask from './components/ListTask';
 
 function App() {
   return (
-    <div className="App">
+    
+
+<div className="app-container">
+<div className="main-content">
       <h1>TO DO LIST</h1>
       <AddTask/>
       <ListTask/>
-    </div>
+    </div></div>
   );
 }
 

@@ -1,51 +1,53 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
-import { addTask } from '../JS/actions/toDo-action';
+import { useDispatch } from 'react-redux'
+import { addTask } from '../JS/actions/toDo-action'
+import './AddTask.css' // Import du fichier CSS
 
 const AddTask = () => {
-    //useStateSnippet : recuperer donnee saisir dans la zone de texte description
-    const [description, setDescription] = useState('');
-    
-    //hook useDispatch pour declancher l'action
+    const [description, setDescription] = useState('')
     const dispatch = useDispatch()
-    //console.log(description)
-    const handleSubmit=(e)=>{
-        //empecher le formulaire de se charger
-        e.preventDefault();
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
         
-        //validation pour input description
-        if(description.trim()==='') 
-            return alert('Vous devez ecrire une tache')
-        const newtask={
-            id:Math.random(),
+        if (description.trim() === '') {
+            return alert('Veuillez saisir une tâche valide')
+        }
+
+        const newTask = {
+            id: Math.random(),
             description,
             isDone: false
         }
-       //declancher l'action pour rajouter la tache en fin du tableau
-        dispatch(addTask(newtask));
 
-        //vider l'input
-        setDescription('');
-
+        dispatch(addTask(newTask))
+        setDescription('')
     }
-  return (
-    <div className='container m-5'>
-      <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        {/**zone de texte description */}
-        <Form.Control type="text" placeholder="Description" 
-        value={description}
-        onChange={(e)=>{setDescription(e.target.value);}} />
-        
-      </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Add Task
-      </Button>
-    </Form>
-    </div>
-  )
+    return (
+        <div className='add-task-container'>
+            <Form onSubmit={handleSubmit} className='task-form'>
+                <Form.Group controlId="taskDescription">
+                    <Form.Control 
+                        type="text" 
+                        placeholder="Entrez votre tâche..." 
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className='task-input'
+                    />
+                </Form.Group>
+
+                <Button 
+                    variant="primary" 
+                    type="submit"
+                    className='submit-btn'
+                >
+                    ADD
+                </Button>
+            </Form>
+        </div>
+    )
 }
 
 export default AddTask

@@ -1,3 +1,69 @@
-.App {
-  text-align: center;
+/* Fond stylisé avec texture papier et couleurs */
+.app-container {
+  background: 
+    /* Dégradé de couleur chaud */
+    linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%),
+    /* Texture papier */
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff" fill-opacity="0.2"/><path d="M20 0 L20 100 M40 0 L40 100" stroke="%23ff6b6b" stroke-width="1" stroke-opacity="0.2"/><path d="M0 20 L100 20 M0 40 L100 40" stroke="%233498db" stroke-width="1" stroke-opacity="0.1"/></svg>');
+  
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Conteneur principal style carnet */
+.main-content {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 
+    0 6px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-left: 12px solid #ff6b6b;
+  position: relative;
+  backdrop-filter: blur(4px);
+}
+
+/* Effet de trombones colorés */
+.main-content::before,
+.main-content::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 12px;
+  background: #3498db;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  opacity: 0.7;
+}
+
+.main-content::before {
+  top: 30px;
+  right: 20px;
+}
+
+.main-content::after {
+  bottom: 30px;
+  right: 20px;
+  background: #ffcc00;
+}
+
+/* Points de reliure */
+.main-content::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 80px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ff6b6b,
+    #ff6b6b 15px,
+    #3498db 15px,
+    #3498db 30px
+  );
+  border-radius: 0 8px 8px 0;
 }

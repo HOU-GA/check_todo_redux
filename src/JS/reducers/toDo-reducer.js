@@ -1,7 +1,7 @@
 //import
 
 //import { addTask } from "../actions/toDo-action";
-import { ADD_TASK, DELETE_TASK } from "../actionTypes/toDo";
+import { ADD_TASK, DELETE_TASK, EDIT_TASK, TOGGLE_TASK } from "../actionTypes/toDo";
 
 
 
@@ -42,6 +42,24 @@ const toDoReducer =(state=initialState, {type, payload})=>{
             ...state, tasks:state.tasks.filter(task=>task.id !== payload)
 
         }
+
+        case EDIT_TASK:
+            return {
+                ...state, tasks:state.tasks.map(task=>task.id === payload.id
+                    ? {...task, description: payload.newDescription} 
+                    : task
+                 )
+            }
+
+            case TOGGLE_TASK:
+                return {
+                    ...state, tasks:state.tasks.map((task)=>
+                    task.id === payload?
+                    {...task, isDone:!task.isDone}: task
+                ),
+                };
+
+
             
         default:
             return state;
